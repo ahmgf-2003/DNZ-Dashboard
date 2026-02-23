@@ -1,0 +1,383 @@
+/* Start variables */
+:root {
+    --main-black: #141522;
+    --alt-text: #54577a;
+    --dark-gray: #f5f5f7;
+    --light-gray: #fafafa;
+    --dark-purple: #546fff;
+    --light-purple: #8e92bc;
+}
+/* End variables */
+
+/* Start global rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+.container {
+    padding-inline: 32px;
+    margin-inline: auto;
+}
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: var(--main-black);
+}
+/* End global rules */
+
+/* Start component */
+.sub-heading {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+/* End component */
+
+/* Start main */
+main {
+    display: flex;
+}
+/* End main */
+
+/* Start navbar */
+nav {
+    padding: 32px;
+    width: 252px;
+    position: relative;
+    z-index: 9999;
+}
+nav figure {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+}
+nav figure img {
+    width: 33px;
+    margin-right: 12px;
+}
+nav figcaption {
+    font-size: 32px;
+    font-weight: 600;
+}
+nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+nav li a {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    margin-bottom: 24px;
+    color: var(--light-purple);
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+}
+nav li a.active {
+    color: var(--main-black);
+    background-color: var(--dark-gray);
+}
+nav li svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    color: var(--light-purple);
+}
+nav li a.active svg {
+    color: var(--main-black);
+}
+nav .help {
+    margin-top: 295px;
+    position: relative;
+}
+nav .help-icon {
+    position: absolute;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    background-color: var(--main-black);
+    color: white;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 10px 25px 0 #54577a;
+    top: -24px;
+    left: calc(50% - 24px);
+}
+nav .help-icon svg {
+    width: 35px;
+    height: 35px;
+}
+nav .help-container {
+    text-align: center;
+    padding: 64px 16px 16px;
+    background-color: var(--main-black);
+    color: white;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+nav .help-container::before,
+nav .help-container::after {
+    content: "";
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    background-color: rgb(255 255 255 / 8%);
+    border-radius: 50%;
+}
+nav .help-container::before {
+    left: -94px;
+    top: -100px;
+}
+nav .help-container::after {
+    left: 120px;
+    top: 168px;
+}
+nav .help .title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+nav .help .info {
+    font-size: 12px;
+    font-weight: 500;
+    margin: 12px 0 0;
+    line-height: 1.4;
+}
+nav .help button {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    padding: 12px;
+    margin-top: 57px;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: white;
+    color: var(--main-black);
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+/* End navbar */
+
+/* Start wrapper section */
+.wrapper {
+    background-color: var(--light-gray);
+    min-height: 100vh;
+    flex-grow: 1;
+}
+
+/* Start header */
+header {
+    padding-top: 32px;
+    margin-bottom: 44px;
+}
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header .greeting-user h1 {
+    font-size: 24px;
+    font-weight: 600;
+}
+header .greeting-user p {
+    margin: 8px 0 0;
+    font-weight: 500;
+    color: var(--alt-text);
+}
+header .user-details {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+header .notification-bell {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin-right: 24px;
+    border: 1px solid var(--dark-gray);
+    border-radius: 50%;
+}
+header .notification-bell::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #ff4d5e;
+    border-radius: 50%;
+    position-anchor: --notification;
+    top: calc(anchor(top) + 2px);
+    right: calc(anchor(right) + 3px);
+}
+header .notification-bell svg {
+    width: 24px;
+    height: 24px;
+    color: var(--light-purple);
+    anchor-name: --notification;
+}
+header .figure img {
+    width: 52px;
+    height: 52px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+/* End header */
+
+/* Start overview section */
+.overview {
+    display: grid;
+    grid-template-columns: minmax(190px, auto) minmax(460px, 1fr);
+    gap: 32px;
+    text-transform: capitalize;
+}
+@media (max-width: 991px) {
+    .overview {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Start task */
+.overview .task {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    padding: 20px;
+    background-color: var(--main-black);
+    color: white;
+    border-radius: 10px;
+}
+.overview .task .todo-tasks {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+}
+.overview .task .tasks-progress {
+    display: flex;
+    align-items: center;
+    column-gap: 18px;
+}
+.overview .tasks-progress {
+    position: relative;
+}
+.overview .tasks-progress::after {
+    content: attr(data-task-completed) "%";
+    position: absolute;
+    font-size: 18px;
+    font-weight: 500;
+    width: 68px;
+    height: 68px;
+    display: grid;
+    place-items: center;
+    left: 0;
+    top: 0;
+}
+.overview .tasks-progress svg {
+    min-width: 68px;
+    width: 68px;
+    height: 68px;
+    transform: rotate(-90deg);
+}
+.overview .tasks-progress svg circle {
+    fill: transparent;
+    stroke-width: 3px;
+    stroke-dasharray: 201px;
+}
+.overview .tasks-progress svg circle:first-child {
+    stroke: #546fff80;
+    stroke-dashoffset: 0;
+}
+.overview .tasks-progress svg circle:last-child {
+    stroke: var(--dark-purple);
+    stroke-dashoffset: calc(201px - (201px * var(--percentage)) / 100);
+    stroke-linecap: round;
+}
+.overview .total-tasks  {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+.overview .total-tasks span {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--light-purple);
+}
+/* End task */
+
+/* Start activity */
+.activity {
+    padding: 20px;
+    background-color: var(--dark-gray);
+}
+.activity-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.activity-data {
+    display: flex;
+    flex-direction: column;
+    min-height: 130px;
+    padding: 16px;
+    padding-bottom: 10px;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 12px; 
+    font-weight: 500;
+    position: relative;
+}
+.activity-data .rows {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-grow: 1;
+    width: fit-content;
+    margin-right: 16px;
+}
+.activity-data .columns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    margin-left: 20px;
+}
+.activity-data .columns span {
+    position: relative; 
+}
+.activity-data .columns span::before {
+    content: "";
+    position: absolute;
+    background-color: var(--dark-gray);
+    width: 1px;
+    height: calc(var(--height) * 1px);
+    margin-left: -0.5px;
+    bottom: 100%;
+    left: 50%;
+}
+.data-points {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+} 
+.data-point {
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    background-color: black;
+    border-radius: 50%;
+    left: calc(var(--left) * 1px);
+    bottom: calc(var(--top) * 1px);
+}
+/* End activity */
+
+/* End overview section */
+
+/* End wrapper section */
