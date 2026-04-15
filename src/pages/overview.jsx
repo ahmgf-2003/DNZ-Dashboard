@@ -4,6 +4,7 @@ const Overview = () => {
     const rows = useRef(null);
     const columns = useRef(null)
     const dataPoints = useRef(null)
+    const offsets = useRef([])
 
     useEffect(() => {
         if (rows.current && columns.current && dataPoints.current) {
@@ -14,10 +15,32 @@ const Overview = () => {
                 let offsetLeft = span.offsetLeft - columns.current.offsetLeft + 36 + (span.offsetWidth / 2);
                 let offsetTopRatio = chartHeight/ (3 - 1);
                 let offsetTop = offsetTopRatio * (point.dataset.value - 1);
-                point.dataset.value > 1 ? point.style.cssText = "transform: translateY(50%)" : null;
-                point.style.setProperty("--left", offsetLeft - (point.offsetWidth / 2));
-                point.style.setProperty("--top", columns.current.offsetHeight + 10 + offsetTop);
+                offsets.current.push({left: offsetLeft - (point.offsetWidth / 2), top: columns.current.offsetHeight + 10 + offsetTop});
+                point.style.setProperty("--left", offsets.current[i].left);
+                point.style.setProperty("--top", offsets.current[i].top);
             })
+
+            let offsetsCpy = offsets.current;
+            for (let i = 0, n = offsetsCpy.length - 1; i < n; i++) {
+                let p1 = offsetsCpy[i],
+                    p2 = offsetsCpy[i + 1];
+
+                let dx = p1.left - p2.left;
+                let dy = p1.top - p2.top; // 'top' is actually tracking the bottom offset here
+
+                let hypotenuse = Math.sqrt(dx * dx + dy * dy);
+
+                let angleInDegrees = Math.asin(dy / hypotenuse) * (180 / Math.PI);
+
+                dataPoints.current.children[i].style.setProperty(
+                    "--hypotenuse",
+                    hypotenuse,
+                );
+                dataPoints.current.children[i].style.setProperty(
+                    "--angle",
+                    angleInDegrees,
+                );
+            }
         }
     }, [])
 
