@@ -371,10 +371,27 @@ header .figure img {
     width: 6px;
     height: 6px;
     position: absolute;
-    background-color: black;
     border-radius: 50%;
+    background-color: black;
     left: calc(var(--left) * 1px);
     bottom: calc(var(--top) * 1px);
+}
+.data-point::after {
+    content: "";
+    position: absolute;
+    width: calc(var(--hypotenuse) * 1px);
+    height: 3px;         
+    background: black;
+    
+    /* Start exactly in the center of the 6x6 data point */
+    top: 50%;
+    left: 50%;
+    
+    /* Pivot from the left-center of the line */
+    transform-origin: left center; 
+    
+    /* Offset vertically by half the line height (1.5px) so it centers perfectly, then rotate */
+    transform: translateY(-50%) rotate(calc(var(--angle) * 1deg));
 }
 /* End activity */
 
