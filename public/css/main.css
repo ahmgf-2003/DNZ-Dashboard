@@ -297,7 +297,7 @@ header .figure img {
     stroke-dashoffset: calc(201px - (201px * var(--percentage)) / 100);
     stroke-linecap: round;
 }
-.overview .total-tasks  {
+.overview .total-tasks {
     margin: 0;
     font-size: 20px;
     font-weight: 600;
@@ -322,6 +322,14 @@ header .figure img {
     justify-content: space-between;
     margin-bottom: 20px;
 }
+.activity-info .custom-select {
+    position: relative;
+}
+.activity-info select {
+    border: none;
+    outline: none;
+    background-color: var(--dark-gray);
+}
 .activity-data {
     display: flex;
     flex-direction: column;
@@ -330,7 +338,7 @@ header .figure img {
     padding-bottom: 10px;
     background-color: white;
     border-radius: 10px;
-    font-size: 12px; 
+    font-size: 12px;
     font-weight: 500;
     position: relative;
 }
@@ -350,7 +358,7 @@ header .figure img {
     margin-left: 20px;
 }
 .activity-data .columns span {
-    position: relative; 
+    position: relative;
 }
 .activity-data .columns span::before {
     content: "";
@@ -366,32 +374,58 @@ header .figure img {
     padding: 0;
     margin: 0;
     list-style: none;
-} 
+    z-index: 1;
+}
 .data-point {
-    width: 6px;
-    height: 6px;
+    width: 13px;
+    height: 13px;
     position: absolute;
     border-radius: 50%;
-    background-color: black;
+    background-color: var(--dark-gray);
+    border: 3px solid var(--dark-purple);
     left: calc(var(--left) * 1px);
     bottom: calc(var(--top) * 1px);
 }
-.data-point::after {
+.data-point::before {
     content: "";
     position: absolute;
     width: calc(var(--hypotenuse) * 1px);
-    height: 3px;         
+    height: 3px;
     background: black;
-    
-    /* Start exactly in the center of the 6x6 data point */
     top: 50%;
     left: 50%;
-    
-    /* Pivot from the left-center of the line */
-    transform-origin: left center; 
-    
-    /* Offset vertically by half the line height (1.5px) so it centers perfectly, then rotate */
     transform: translateY(-50%) rotate(calc(var(--angle) * 1deg));
+    transform-origin: left center;
+    z-index: -1;
+}
+.data-point::after {
+    opacity: 0;
+    content: attr(data-value) " tasks";
+    position: absolute;
+    text-align: center;
+    padding-top: 4px;
+    width: 60px;
+    height: 30px;
+    clip-path: polygon(
+        0% 0%,
+        100% 0%,
+        100% 75%,
+        60% 75%,
+        50% 100%,
+        40% 75%,
+        0% 75%
+    );
+    background-color: var(--main-black);
+    color: white;
+    font-size: 12px;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, -5px);
+    word-spacing: 2px;
+    transition: opacity linear 0.3s;
+}
+.data-point:hover::after {
+    opacity: 100%;
 }
 /* End activity */
 
