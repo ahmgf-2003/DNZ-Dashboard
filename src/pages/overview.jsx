@@ -68,6 +68,7 @@ const Overview = () => {
                     <h2 className="sub-heading">Activity</h2>
                     <select>
                         <option value="current">This Week</option>
+                        <option value="last-week">last Week</option>
                     </select>
                 </div>
                 <div className="activity-data">
