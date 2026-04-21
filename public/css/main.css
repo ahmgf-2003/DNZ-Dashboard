@@ -370,11 +370,17 @@ header .figure img {
     bottom: 100%;
     left: 50%;
 }
+.data-container {
+    z-index: 1;
+}
 .data-points {
+    visibility: hidden;
     padding: 0;
     margin: 0;
     list-style: none;
-    z-index: 1;
+}
+.data-points.active {
+    visibility: visible;
 }
 .data-point {
     width: 13px;
@@ -428,6 +434,78 @@ header .figure img {
     opacity: 100%;
 }
 /* End activity */
+
+/* Start Mentor */
+.mentors {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+}
+.mentor {
+    padding: 24px;
+    border-radius: 10px;
+    background-color: white;
+}
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.profile .profile-info {
+    display: flex;
+    align-items: center;
+}
+.profile img {
+    margin-right: 8px;
+    width: 48px;
+    max-width: 100%;
+    border-radius: 50%;
+}
+.profile .profile-info .name {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+.profile .profile-info .job {
+    margin: 4px 0 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--alt-text);
+}
+.profile .follow-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-purple);
+}
+.mentor-data {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mentor .tasks,
+.mentor .reviews {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+.mentor .tasks svg,
+.mentor .reviews svg {
+    margin-right: 8px;
+}
+.mentor .tasks svg {
+    font-size: 20px;
+    color: var(--alt-text);
+    transform: rotate(-15deg)
+}
+.mentor .reviews svg {
+    font-size: 24px;
+    color: #ffb054;
+}
+/* End Mentor */
 
 /* End overview section */
 
