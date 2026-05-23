@@ -1,9 +1,31 @@
 import Mentor from "../components/Mentor/Index";
 import Chart from "../components/Chart"
-import img from "../assets/images/person-1.png";
+import person1 from "../assets/images/person-1.png";
+import person2 from "../assets/images/person-2.png";
+import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft  } from "react-icons/md";
+
 
 const Overview = () => {
-
+    const mentors = [
+        {
+            name: "Curious George",
+            image: person1,
+            job: "UI UX Design",
+            tasks: 40,
+            reviews: 750,
+            rate: "4,7",
+            isFollowed: false,
+        },
+        {
+            name: "Abraham Lincoln",
+            image: person2,
+            job: "3D Design",
+            tasks: 32,
+            reviews: 510,
+            rate: "4,9",
+            isFollowed: true,
+        },
+    ];
 
     return (
         <div className="overview container">
@@ -28,16 +50,29 @@ const Overview = () => {
                 <Chart />
             </div>
             <div className="mentors">
-                <Mentor>
-                    <Mentor.Profile img={img} name="Curious George" job="UI UX Design">
-                        <Mentor.FollowBtn />
-                    </Mentor.Profile>
-                    <div className="mentor-data">
-                        <Mentor.Tasks>40 Tasks</Mentor.Tasks>
-                        <Mentor.Review>4,7  (750 Reviews)</Mentor.Review>
+                <h2 className="title">
+                    Monthly Mentors
+                    <div className="arrows">
+                        <MdOutlineKeyboardArrowLeft />
+                        <MdOutlineKeyboardArrowRight />
                     </div>
-                </Mentor>
-            </div>
+                </h2>
+                <div className="mentors-container">
+                    {
+                        mentors.map(mentor => (
+                    <Mentor>
+                        <Mentor.Profile img={mentor.image} name={mentor.name} job={mentor.job}>
+                            <Mentor.FollowBtn isFollowed={mentor.isFollowed} />
+                        </Mentor.Profile>
+                        <div className="mentor-data">
+                            <Mentor.Tasks>{mentor.tasks} Tasks</Mentor.Tasks>
+                            <Mentor.Review>{mentor.rate} ({mentor.reviews} Reviews)</Mentor.Review>
+                        </div>
+                    </Mentor>
+                        ))
+                    }
+                </div>
+            </div>  
         </div>
     );
 };
